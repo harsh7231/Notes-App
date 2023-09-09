@@ -15,23 +15,29 @@ function LNotes() {
     setNotes(JSON.parse(localStorage.getItem(selected)) || []);
     const groupNames = JSON.parse(localStorage.getItem("groupNames"));
     const selectedGroup = groupNames.find((group) => group.name === selected);
+
+    let initials = "";
+    let selectedTitle = "";
+
     if (selectedGroup) {
-      setBgColor(selectedGroup.color);
-      setInitials(
-        selectedGroup.name
-          .split(" ")
-          .map((word) => word.charAt(0))
-          .join("")
-          .toUpperCase()
-      );
-      setSelectedTitle(
-        selectedGroup.name
-          .split(" ")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ")
-      );
-    }
-  }, [selected, setNotes]);
+      const words = selectedGroup.name.split(" ");
+      if (words.length === 1) {
+        initials = words[0].slice(0, 2).toUpperCase();
+      } else if (words.length === 2) {
+        initials = words[0].charAt(0).toUpperCase() + words[1].charAt(0).toUpperCase();
+      } else if (words.length > 2) {
+        initials = words[0].charAt(0).toUpperCase() + words[words.length - 1].charAt(0).toUpperCase();
+      }
+
+  selectedTitle = words
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+   setBgColor(selectedGroup ? selectedGroup.color : "#fff");
+   setInitials(initials);
+   setSelectedTitle(selectedTitle);
+   }, [selected, setNotes]);
+
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {

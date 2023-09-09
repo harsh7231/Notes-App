@@ -1,8 +1,8 @@
 import React from 'react'
-import './NotesTitle.css';
+import './LNotesTitle.css';
 import UseContext from '../../useContext'
 
-function NotesTitle({ title }) {
+function LNotesTitle({ title }) {
     const { selected, setSelected } = UseContext();
     const nameInitals = (() => {
       const words = title[0].name.split(" ");
@@ -43,4 +43,4 @@ function NotesTitle({ title }) {
     );
   }
   
-  export default NotesTitle;
+  export default LNotesTitle;

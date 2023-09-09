@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Phone.css";
 import CreateNotesM from "../../src/components/Create Notes/CreateNotesM";
-import MNotes from "../../src/components/Notes/MNotes";
+import MNotesTitle from "../../src/components/Notes Title/MNotesTitle";
 import MHome from "../../src/components/Home/MHome";
 
 function Phone() {
@@ -66,7 +66,7 @@ function Phone() {
       <div className="mobile_sidebar_notes_title">
         {titles.length > 0 ? (
           titles.map((title, index) => (
-            <MNotes
+            <MNotesTitle
               title={title}
               key={index}
             />

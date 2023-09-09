@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef} from "react";
 import "./Sidebar.css";
 import CreateNotes from "../Create Notes/CreateNotesL";
-import NotesTitle from "../Notes Title/NotesTitle";
+import LNotesTitle from "../Notes Title/LNotesTitle";
 
 function Sidebar() {
   const [titles, setTitles] = useState([]);
@@ -64,7 +64,7 @@ function Sidebar() {
       </div>
       <div className="sidebar_notes_title">
         {titles.length > 0 ? (
-          titles.map((title, index) => <NotesTitle key={index} title={title} />)
+          titles.map((title, index) => <LNotesTitle key={index} title={title} />)
         ) : (
           <div>
           </div>

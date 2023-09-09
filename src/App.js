@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Laptop from "./pages/Laptop";
 import Phone from "./pages/Phone";
-import MNotesPage from "./components/Mobile Notes Page/MNotesPage";
+import MNotes from "./components/Notes/MNotes";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "./setContext";
 import UseContext from "./useContext";
@@ -29,7 +29,7 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<Phone />} />
-              <Route path="/notes" element={<MNotesPage />} />
+              <Route path="/notes" element={<MNotes />} />
             </Routes>
           </Router>
         )}
