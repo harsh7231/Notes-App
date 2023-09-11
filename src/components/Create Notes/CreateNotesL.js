@@ -4,9 +4,12 @@ import "./CreateNotesL.css";
 function CreateNotesL({ groupNamesParent, setGroupNamesParent, onClose }) {
   const [groupName, setGroupName] = useState("");
   const [bgColor, setBgColor] = useState("");
+  const [showErrors, setShowErrors] = useState(false);
+  const [groupNameError, setGroupNameError] = useState("");
 
   const handleGroupName = (e) => {
     setGroupName(e.target.value);
+    setGroupNameError("");
   };
 
   const handleColor = (e) => {
@@ -15,13 +18,16 @@ function CreateNotesL({ groupNamesParent, setGroupNamesParent, onClose }) {
   };
 
   const saveName = () => {
-    const newGroup = { name: groupName, color: bgColor };
-    setGroupNamesParent([...groupNamesParent, newGroup]);
-    localStorage.setItem(
-      "groupNames",
-      JSON.stringify([...groupNamesParent, newGroup])
-    );
-    onClose();
+    setShowErrors(true);
+    if (groupName.trim() === "") {
+      setGroupNameError("Group name is empty");
+    } 
+    else{
+      const newGroup = { name: groupName, color: bgColor };
+      setGroupNamesParent([...groupNamesParent, newGroup]);
+      localStorage.setItem("groupNames", JSON.stringify([...groupNamesParent, newGroup]));
+      onClose();
+    }
   };
 
   return (
@@ -36,6 +42,7 @@ function CreateNotesL({ groupNamesParent, setGroupNamesParent, onClose }) {
           placeholder="Enter your group name...."
         />
       </div>
+            {showErrors && <p className="errorText">{groupNameError}</p>}
       <div className="popup_choose_color">
         <span>Choose Color</span>
         <div className="popup_color">
@@ -66,7 +73,7 @@ function CreateNotesL({ groupNamesParent, setGroupNamesParent, onClose }) {
         </div>
       </div>
       <div className="popup_close">
-        <button onClick={saveName} disabled={groupName.length === 0}>
+        <button onClick={saveName}>
           Create
         </button>
       </div>
