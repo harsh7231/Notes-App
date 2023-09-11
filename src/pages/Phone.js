@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Phone.css";
 import CreateNotesM from "../../src/components/Create Notes/CreateNotesM";
 import MNotesTitle from "../../src/components/Notes Title/MNotesTitle";
-import MHome from "../../src/components/Home/MHome";
 
 function Phone() {
   const [titles, setTitles] = useState([]);
@@ -64,15 +63,13 @@ function Phone() {
         </button>
       </div>
       <div className="mobile_sidebar_notes_title">
-        {titles.length > 0 ? (
+        {(
           titles.map((title, index) => (
             <MNotesTitle
               title={title}
               key={index}
             />
           ))
-        ) : (
-          <MHome />
         )}
       </div>
       {showPopup && (
