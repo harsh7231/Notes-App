@@ -7,6 +7,7 @@ function CreateNotesM({ onClose, groupNamesParent, setGroupNamesParent}) {
 
   const handleGroupName = (e) => {
     setGroupName(e.target.value);
+    setGroupNameError("");
   };
 
   const handleColor = (e) => {
@@ -15,13 +16,16 @@ function CreateNotesM({ onClose, groupNamesParent, setGroupNamesParent}) {
   };
 
   const saveName = () => {
-    const newGroup = { name: groupName, color: bgColor };
-    setGroupNamesParent([...groupNamesParent, newGroup]);
-    localStorage.setItem(
-      "groupNames",
-      JSON.stringify([...groupNamesParent, newGroup])
-    );
-    onClose();
+    setShowErrors(true);
+    if (groupName.trim() === "") {
+      setGroupNameError("Group name is empty");
+    } 
+    else{
+      const newGroup = { name: groupName, color: bgColor };
+      setGroupNamesParent([...groupNamesParent, newGroup]);
+      localStorage.setItem("groupNames", JSON.stringify([...groupNamesParent, newGroup]));
+      onClose();
+    }
   };
 
   return (
@@ -36,6 +40,7 @@ function CreateNotesM({ onClose, groupNamesParent, setGroupNamesParent}) {
           placeholder="Enter your group name...."
         />
       </div>
+            {showErrors && <p className="errorText">{groupNameError}</p>}
       <div className="m_popup_choose_color">
         <span>Choose Color</span>
         <div className="m_popup_color">
