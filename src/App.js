@@ -4,32 +4,34 @@ import Laptop from "./pages/Laptop";
 import Phone from "./pages/Phone";
 import MNotes from "./components/Notes/MNotes";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Provider } from "./useContext";
+import { Provider} from "./useContext";
 import UseContext from "./useContext";
 
 function App() {
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
   const { selected, setSelected } = UseContext();
 
   useEffect(() => {
     setSelected(localStorage.getItem("selected") || "");
+    // eslint-disable-next-line
   }, [selected]);
-
-  const isMobile = () => {
-    return window.matchMedia("(max-width: 500px)").matches;
+  const checkScreenSize = () => {
+    setScreenSize(window.innerWidth);
   };
 
+  window.addEventListener("resize", checkScreenSize);
   return (
     <Provider>
       <div className="App">
-        {isMobile() ? (
+        {screenSize > 500 ? (
+          <Laptop />
+        ) : (
           <Router>
             <Routes>
               <Route path="/" element={<Phone />} />
               <Route path="/notes" element={<MNotes />} />
             </Routes>
           </Router>
-        ) : (
-          <Laptop />
         )}
       </div>
     </Provider>
