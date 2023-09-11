@@ -12,11 +12,9 @@ function App() {
 
   useEffect(() => {
     setSelected(localStorage.getItem("selected") || "");
-    // eslint-disable-next-line
   }, [selected]);
 
   const isMobile = () => {
-    // Use media query to check if the device is mobile
     return window.matchMedia("(max-width: 500px)").matches;
   };
 
