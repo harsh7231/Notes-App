@@ -45,7 +45,12 @@
       font-size: 2vh;
       font-weight: 600;
   }
-  
+   .errorText {
+    color: red;
+    font-size: 14px; 
+    margin-top: 4px; 
+    margin: 1vh 1vh 1vh 10vh;
+  }
   .m_popup_choose_color{
       height: 5vh;
       width: 100%;
