@@ -4,7 +4,7 @@ import Laptop from "./pages/Laptop";
 import Phone from "./pages/Phone";
 import MNotes from "./components/Notes/MNotes";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Provider } from "./setContext";
+import { Provider} from "./useContext";
 import UseContext from "./useContext";
 
 function App() {
