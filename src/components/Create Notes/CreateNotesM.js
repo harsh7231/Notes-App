@@ -73,7 +73,7 @@ function CreateNotesM({ onClose, groupNamesParent, setGroupNamesParent}) {
         </div>
       </div>
       <div className="m_popup_create">
-        <button onClick={saveName} disabled={groupName.length === 0}>
+        <button onClick={saveName}>
           Create
         </button>
       </div>
