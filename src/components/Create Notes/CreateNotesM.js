@@ -4,6 +4,8 @@ import "./CreateNotesM.css"
 function CreateNotesM({ onClose, groupNamesParent, setGroupNamesParent}) {
   const [groupName, setGroupName] = useState("");
   const [bgColor, setBgColor] = useState("");
+  const [showErrors, setShowErrors] = useState(false);
+  const [groupNameError, setGroupNameError] = useState("");
 
   const handleGroupName = (e) => {
     setGroupName(e.target.value);
